@@ -91,6 +91,20 @@ module.exports = function(url)
 			});
 		callback(null, _.indexOf(memberCache, id) != -1);
 	}
+	
+	function getMemberType(id, callback)
+	{
+		if(memberCache == null)
+			return getMembers(function(err, members) {
+				if(err) return callback(err);
+				getMemberType(id, callback);
+			});
+		if(id == ownerCache) return callback(null, 'owner');
+		if(_.indexOf(officerCache, id) != -1) return callback(null, 'officer');
+		if(_.indexOf(modCache, id) != -1) return callback(null, 'moderator');
+		if(_.indexOf(memberCache, id) != -1) return callback(null, 'member');
+		callback('User is not a member of this group.');
+	}
 
 	function clearCache()
 	{
@@ -105,6 +119,7 @@ module.exports = function(url)
 		getOwner: getOwner,
 		getModerators: getModerators,
 		getOfficers: getOfficers,
+		getMemberType: getMemberType,
 		isMember: isMember,
 		clearCache: clearCache
 	};

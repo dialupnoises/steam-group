@@ -37,6 +37,10 @@ group.getModerators(callback);
 // accepts callback(err, result)
 // result is a boolean of whether or not the person is a member of this group
 group.isMember(id, callback);
+
+// accepts callback(err, result)
+// result is either 'owner', 'officer', 'moderator', or 'member'
+group.getMemberType(id, callback);
 ```
 
 Group members are cached on the first use of the library (that is, the first time you use any of the functions). If you want to clear the cache without recreating the group object, you can use the clearCache function:
