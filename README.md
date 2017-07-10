@@ -22,9 +22,9 @@ var group = steamGroup.fromId64('103582791430091926');
 
 Once you have a group object, you can use several methods for retrieving member information:
 ```
-// accepts callback(err, result)
+// accepts limit (the maximum number of members to find) and callback(err, result)
 // result is an array of 64-bit community ID strings
-group.getMembers(callback);
+group.getMembers(limit, callback);
 
 // accepts callback(err, result)
 // result is the 64-bit community ID string of the owner
@@ -52,7 +52,7 @@ group.clearCache();
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Andrew Rogers
+Copyright (c) 2017 Andrew Rogers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
