@@ -128,11 +128,15 @@ module.exports = function(url)
 	function isMember(id, callback)
 	{
 		if(!loadedMembers)
-			return getMembers(function(err, members) {
-				if(err) return callback(err);
-				callback(null, _.indexOf(memberCache, id) != -1);
-			});
-		callback(null, _.indexOf(memberCache, id) != -1);
+			return callback("You need to call getMembers before calling isMember.");
+		var keys = Object.keys(memberCache);
+		// check all keys to see if any of them contain the id
+		for(var i = 0; i < keys.length; i++)
+		{
+			if(memberCache[keys[i]].indexOf(id) != -1)
+				return callback(null, true);
+		}
+		return callback(null, false);
 	}
 	
 	function getMemberType(id, callback)
