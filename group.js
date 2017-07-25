@@ -128,7 +128,11 @@ module.exports = function(url)
 	function isMember(id, callback)
 	{
 		if(!loadedMembers)
-			return callback("You need to call getMembers before calling isMember.");
+			return getMembers(function(err, members) {
+				if(err) return callback(err);
+				isMember(id, callback);
+			});
+
 		var keys = Object.keys(memberCache);
 		// check all keys to see if any of them contain the id
 		for(var i = 0; i < keys.length; i++)

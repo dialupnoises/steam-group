@@ -12,7 +12,15 @@ group.getMembers(function(err, members) {
 		if(err)
 			throw err;
 		console.log("76561198005846463: " + result);
+		console.log("(should be true)");
 	});
+
+	group.isMember("76561197960287930", function(err, result) {
+		if(err)
+			throw err;
+		console.log("76561197960287930: " + result);
+		console.log("(should be false)");
+	})
 });
 
 group.getOwner(function(err, owner) {
