@@ -36,7 +36,8 @@ group.getModerators(callback);
 
 // accepts callback(err, result)
 // result is a boolean of whether or not the person is a member of this group
-// this loads the group members if you haven't already! if you only want to, for example, check the first 1000 members, call getMembers first.
+// this loads the group members if you haven't already! if you only want to, 
+// for example, check the first 1000 members, call getMembers first.
 group.isMember(id, callback);
 
 // accepts callback(err, result)
